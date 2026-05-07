@@ -5,40 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15c3b783-343b-4213-87b5-208073e7482a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/UpTickets.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.venv/Scripts/python.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.venv/Scripts/python3.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.venv/Scripts/python313.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.venv/Scripts/pythonw.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.venv/pyvenv.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/produtoController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/database/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/database/eventos.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/database/fornecedores.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/database/usuarios.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/services/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/infrastructure/services/geradorIngressos.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/constructors/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/constructors/produtoConstructor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/handlePorcess.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/DAO/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/DAO/databaseDB.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/entitys/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/entitys/evento.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/entitys/fornecedor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/entitys/usuario.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/produtoView.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
