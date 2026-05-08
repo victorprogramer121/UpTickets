@@ -1,5 +1,5 @@
 class Fornecedor:
-    def __init__(self, nomeFornecedor:str, cnpj:str, senhaFornecedor:str):
+    def __init__(self, nomeFornecedor:str, senhaFornecedor:str, cnpj:str):
         self.__nomeFornecedor=nomeFornecedor
         self.__cnpj=cnpj
         self.__senhaFornecedor=senhaFornecedor
@@ -13,6 +13,14 @@ class Fornecedor:
         self.__nomeFornecedor=nomeFornecedor
 
     @property
+    def senhaFornecedor(self) -> str:
+        return self.__senhaFornecedor
+
+    @senhaFornecedor.setter
+    def novaSenhaFornecedor(self, senhaFornecedor) -> None:
+        self.__senhaFornecedor = senhaFornecedor
+
+    @property
     def cnpj(self)->str:
         return self.__cnpj
 
@@ -20,10 +28,13 @@ class Fornecedor:
     def novoCnpj(self, cnpj)->None:
         self.__cnpj=cnpj
 
-    @property
-    def senhaFornecedor(self)->str:
-        return self.__senhaFornecedor
+    def __eq__(self, other):
+        return self.__cnpj==other.__cnpj, print(f"O cnpj informado já está cadastrado")
+    #verificar se está correto
 
-    @senhaFornecedor.setter
-    def novaSenhaFornecedor(self, senhaFornecedor)->None:
-        self.__senhaFornecedor=senhaFornecedor
+    def fornecedor(self)->dict:
+        return {
+            "nome":self.__nomeFornecedor,
+            "senha":self.__senhaFornecedor,
+            "cnpj": self.__cnpj
+        }
