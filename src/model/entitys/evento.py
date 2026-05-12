@@ -2,13 +2,13 @@ from datetime import datetime as dt
 
 
 class Evento:
-    def __init__(self, id, nomeEvento: str, local: str, idadeMIN: int, estado: str, data: dt = None):
+    def __init__(self, id: int, nomeEvento: str, local: str,idadeMIN: int,data: dt = None):
         # self.__cpf=cpf
         self.__nomeEvento = nomeEvento
         self.__local = local
         self.__idadeMIN = idadeMIN
         self.__data = data
-        self.__id = id
+        self.__id =id
 
     # @property
     # def cpf(self)->str:
@@ -20,7 +20,7 @@ class Evento:
 
     @property
     def local(self) -> str:
-        return self.__cidade
+        return self.__local
 
     @property
     def idadeMIN(self) -> str:

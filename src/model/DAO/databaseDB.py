@@ -4,12 +4,12 @@ from json import JSONDecodeError
 
 class DatabaseDB:
     def __init__(self, pastaArquivo):
-        self.__arquivo=fr"C:\Users\batis\PycharmProjects\UpTickets\src\infrastructure\database\{pastaArquivo}"
+        self.__arquivo=fr"C:\Users\kleber.asilva16\Documents\GitHub\UpTickets\src\infrastructure\database\{pastaArquivo}"
         self.__pastaArquivo=pastaArquivo
 
     def lerArquivo(self)->list:
         try:
-            with open(sel.__arquivo, "r+", encoding="UTF-8") as f:
+            with open(self.__arquivo, "r+", encoding="UTF-8") as f:
                 return json.load(f)
         except JSONDecodeError:#aqui é um tratamento de erro caso o arquivo não seja um JSON. Ele é tratado aqui mesmo
             return []
@@ -17,7 +17,7 @@ class DatabaseDB:
             raise ValueError("Erro ao abrir o arquivo: ", self.__pastaArquivo)#aqui trata o erro, jogando esse erro para ser tratado com outro arquivo
 
     def salvar(self, dados):
-        listaJSON=self.readList()
+        listaJSON=self.lerArquivo()
         try:
             with open(self.__arquivo, "w", encoding="UTF-8") as f:
                 listaJSON.append(dados)
