@@ -37,10 +37,11 @@ if __name__ == '__main__':
     # "idadeMIN":16,
     # "data":160411
     #        }
+    # e1.addEventos(dados)
     try:
         e1.deletarEvento(1)
     except Exception as e:
-        print("erro",e)
+         print("erro",e)
 
 
 

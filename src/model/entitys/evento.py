@@ -1,4 +1,5 @@
 from datetime import datetime as dt
+from src.infrastructure.services.geradorID import GeradorID
 
 
 class Evento:
@@ -50,12 +51,12 @@ class Evento:
         }
 
     @staticmethod
-    def dict_to_obejct(data):
+    def dict_to_obejct(dados):
         return Evento(
-            data["id"],
-            data["nomeEvento"],
-            data["local"],
-            data["idadeMIN"],
-            data["data"]
+            dados["id"],
+            dados["nomeEvento"],
+            dados["local"],
+            dados["idadeMIN"],
+            dados["data"]
         )
 
