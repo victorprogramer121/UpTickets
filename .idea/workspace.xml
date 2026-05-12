@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15c3b783-343b-4213-87b5-208073e7482a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/requiriments" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infrastructure/database/pathDB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infrastructure/database/fornecedores.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/database/fornecedores.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DAO/databaseDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DAO/databaseDB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DAO/fornecedor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DAO/fornecedor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/entitys/evento.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/entitys/evento.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
