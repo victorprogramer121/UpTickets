@@ -1,10 +1,11 @@
 import json
 from json import JSONDecodeError
+from src.infrastructure.services.pastaDB import PastaDB
 
 
 class DatabaseDB:
     def __init__(self, pastaArquivo):
-        self.__arquivo=fr"C:\Users\victor.jabatista\PycharmProjects\PythonProject\UpTickets\src\infrastructure\database\{pastaArquivo}"
+        self.__arquivo = fr"{PastaDB().path}\{pastaArquivo}"
         self.__pastaArquivo=pastaArquivo
 
     def lerArquivo(self)->list:
