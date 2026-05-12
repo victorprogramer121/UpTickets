@@ -1,12 +1,11 @@
 from datetime import datetime as dt
 
 class Evento:
-    def __init__(self, nomeEvento:str, local:str, idadeMIN:int, estado:str,data:dt=None ):
+    def __init__(self, nomeEvento:str, local:str, idadeMIN:int, data:dt=None ):
         # self.__cpf=cpf
         self.__nomeEvento=nomeEvento
         self.__local = local
         self.__idadeMIN=idadeMIN
-        self.__estado=estado
         self.__data=data
 
     # @property
@@ -19,10 +18,12 @@ class Evento:
 
     @property
     def local(self)->str:
-        return self.__cidade
+        return self.__local
+
     @property
     def idadeMIN(self)->str:
         return self.__idadeMIN
+
     @property
     def data(self)->dt:
         return self.__data
