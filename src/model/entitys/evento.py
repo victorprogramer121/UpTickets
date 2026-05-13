@@ -1,14 +1,15 @@
 from datetime import datetime as dt
+from src.infrastructure.services.geradorID import GeradorID
 
 
 class Evento:
-    def __init__(self, id,nomeEvento:str, local:str, idadeMIN:int,data:dt=None ):
+    def __init__(self, id: int, nomeEvento: str, local: str,idadeMIN: int,data: dt = None):
         # self.__cpf=cpf
         self.__nomeEvento = nomeEvento
         self.__local = local
-        self.__idadeMIN=idadeMIN
-        self.__data=data
-        self.__id=id
+        self.__idadeMIN = idadeMIN
+        self.__data = data
+        self.__id =id
 
     # @property
     # def cpf(self)->str:
@@ -46,12 +47,12 @@ class Evento:
             
         }
     @staticmethod
-    def dict_to_obejct(data):
+    def dict_to_obejct(dados):
         return Evento(
-            data["id"],
-            data["nomeEvento"],
-            data["local"],
-            data["idadeMIN"],
-            data["data"]
+            dados["id"],
+            dados["nomeEvento"],
+            dados["local"],
+            dados["idadeMIN"],
+            dados["data"]
         )
 
