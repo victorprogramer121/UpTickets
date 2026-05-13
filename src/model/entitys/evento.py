@@ -2,13 +2,13 @@ from datetime import datetime as dt
 
 
 class Evento:
-    def __init__(self, id_evento,nomeEvento:str, local:str, idadeMIN:int, estado:str,data:dt=None ):
+    def __init__(self, id,nomeEvento:str, local:str, idadeMIN:int,data:dt=None ):
         # self.__cpf=cpf
         self.__nomeEvento = nomeEvento
         self.__local = local
         self.__idadeMIN=idadeMIN
         self.__data=data
-        self.__id=id_evento
+        self.__id=id
 
     # @property
     # def cpf(self)->str:
@@ -17,9 +17,6 @@ class Evento:
     @property
     def nomeEvento(self) -> str:
         return self.__nomeEvento
-
-    @property
-
 
     @property
     def idadeMIN(self) -> str:
@@ -33,10 +30,6 @@ class Evento:
     def id(self)->int:
         return self.__id
     
-
-    @property
-    def id(self) -> int:
-        return self.__id
 
     def __eq__(self, other):
         return self.__nomeEvento == other.__nomeEvento and self.__local == other.__local, print("Evento duplicado")
