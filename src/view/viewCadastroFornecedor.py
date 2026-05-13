@@ -10,7 +10,7 @@ from flet.controls.material import container
 class ViewCadastroFornecedor(View):
     def __init__(self, page: Page):
         super().__init__(
-            route="/")
+            route="/cadastroFornecedor")
 
         page.title = "Up Tickets+"
 

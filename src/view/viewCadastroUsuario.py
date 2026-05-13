@@ -3,7 +3,6 @@
 from certifi import contents
 from flet import *
 import flet as ft
-from flet.controls.border_radius import vertical
 from flet.controls.core import column, icon
 from flet.controls.material import container, icon_button
 
@@ -11,7 +10,7 @@ from flet.controls.material import container, icon_button
 class ViewCadastroUsuario(View):
     def __init__(self,page:Page):
         super().__init__(
-            route="/")
+            route="/cadastroUsuario")
 
 
         page.title="Up Tickets+"
