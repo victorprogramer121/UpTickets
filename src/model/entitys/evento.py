@@ -1,9 +1,10 @@
 from datetime import datetime as dt
 
+
 class Evento:
     def __init__(self, id_evento,nomeEvento:str, local:str, idadeMIN:int, estado:str,data:dt=None ):
         # self.__cpf=cpf
-        self.__nomeEvento=nomeEvento
+        self.__nomeEvento = nomeEvento
         self.__local = local
         self.__idadeMIN=idadeMIN
         self.__data=data
@@ -14,17 +15,18 @@ class Evento:
     #     return self.__cpf
 
     @property
-    def nomeEvento(self)->str:
+    def nomeEvento(self) -> str:
         return self.__nomeEvento
 
     @property
-    def local(self)->str:
-        return self.__cidade
+
+
     @property
-    def idadeMIN(self)->str:
+    def idadeMIN(self) -> str:
         return self.__idadeMIN
+
     @property
-    def data(self)->dt:
+    def data(self) -> dt:
         return self.__data
     
     @property
@@ -32,11 +34,16 @@ class Evento:
         return self.__id
     
 
-    def __eq__(self, other):
-        return self.__nomeEvento==other.__nomeEvento and self.__local==other.__local, print("Evento duplicado")
-    #verificar se está correto
+    @property
+    def id(self) -> int:
+        return self.__id
 
-    def evento(self)->dict:
+    def __eq__(self, other):
+        return self.__nomeEvento == other.__nomeEvento and self.__local == other.__local, print("Evento duplicado")
+
+    # verificar se está correto
+
+    def evento(self) -> dict:
         return {
             "id":self.__id,
             "nomeEvento":self.__nomeEvento,
