@@ -1,7 +1,42 @@
 [
     {
-        "nomeFornecedor": "Victor LTDA",
+        "nomeFornecedor": "SUPPLY EVENTOS",
         "senhaFornecedor": "vitin0909",
         "cpnj": "76867559757513"
+    },
+    {
+        "nomeFornecedor": "APOIO PRODUÇÕES",
+        "senhaFornecedor": "vitin0808",
+        "cpnj": "76867559757781"
+    },
+    {
+        "nomeFornecedor": "SÃO PAULO DJ",
+        "senhaFornecedor": "sp0808",
+        "cpnj": "76867569757781"
+    },
+    {
+        "nomeFornecedor": "ABN EVENTOS",
+        "senhaFornecedor": "sp0808",
+        "cpnj": "76867569757781"
+    },
+    {
+        "nomeFornecedor": "MM GRUPO EVENTOS",
+        "senhaFornecedor": "sp0893578",
+        "cpnj": "15327569757781"
+    },
+    {
+        "nomeFornecedor": "EVENT FACTORY",
+        "senhaFornecedor": "76dva3578",
+        "cpnj": "15328769757781"
+    },
+    {
+        "nomeFornecedor": "ALFA PRODUÇÕES EVENTOS",
+        "senhaFornecedor": "76dvao361bjd",
+        "cpnj": "15323339757781"
+    },
+    {
+        "nomeFornecedor": "LUI EVENTOS E PROMOÇÕES",
+        "senhaFornecedor": "76d982o361bjd",
+        "cpnj": "1532325757781"
     }
 ]

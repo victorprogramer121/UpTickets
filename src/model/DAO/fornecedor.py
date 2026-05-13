@@ -29,14 +29,18 @@ class FornecedorDAO:
         print(f"Deletado com sucesso")
         #aqui ele salva depois que deleta para atualizar o banco de dados
 
-if __name__ == '__main__':
-    f1=FornecedorDAO()
-    # dados={'nomeFornecedor':'Leonardo LTDA', 'senhaFornecedor':'vitin0909', 'cpnj':'76867559757513'}
+# if __name__ == '__main__':
+#     f1=FornecedorDAO()
+    # dados={'nomeFornecedor':'lui eventos e promoções'.upper(), 'senhaFornecedor':'76d982o361bjd', 'cpnj':'1532325757781'}
     # m=f1.addFornecedor(dados)
     # print(m)
     # primeiro código para inserir fornecedores dentro do banco de dados
 
-    try:
-        f1.deletarFornecedor("Leonardo LTDA")
-    except Exception as e:
-        print("Erro:", e)
+    # try:
+    #     f1.deletarFornecedor("Victor LTDA")
+    # except Exception as e:
+    #     print("Erro:", e)
+    # try:
+    #     f1.lerFornecedor()
+    # except Exception as e:
+    #     print("Erro: ", e)
