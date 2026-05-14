@@ -35,7 +35,7 @@ class Usuario:
         return self.__email==other.email, print(f"O email já está cadastrado")
     #verificar se está certo
 
-    def usuario(self)->dict:
+    def usuarioDict(self)->dict:
         return {
             "email":self.__email,
             "senha":self.__senhaUsuario
