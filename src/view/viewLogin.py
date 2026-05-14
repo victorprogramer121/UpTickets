@@ -22,8 +22,8 @@ class ViewLogin(View):
 
 
         self.email = TextField(label="Email",color="Black",col=5 )
-        self.password=TextField(label="Password",can_reveal_password=True,col=5,color="White")
-        self.cnpj=TextField(label="CNPJ",col=5,color="White")
+        self.password=TextField(label="Password",can_reveal_password=True,col=5,color="Black")
+        self.cnpj=TextField(label="CNPJ",col=5,color="Black")
         self.btnEntrarUsuario=Button("Entrar",col=3)
         self.btnEntrarFornecedor=Button("Entrar",col=3)
         self.cadastroUsuario=Button("Cadastro",col=3)
