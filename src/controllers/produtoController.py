@@ -4,20 +4,28 @@ from src.infrastructure.services.geradorID import GeradorID
 from src.view.viewLogin import ViewLogin
 from src.view.viewCadastroFornecedor import ViewCadastroFornecedor
 from src.view.viewCadastroUsuario import ViewCadastroUsuario
+from src.model.entitys.usuario import Usuario
+from src.model.DAO.usuario import UsuarioDAO
+from src.model.entitys.fornecedor import Fornecedor
+from src.model.DAO.fornecedor import FornecedorDAO
 from flet import *
 
 
 class ViewController:
 
     def __init__(self,page,tela:ViewLogin):
-        self.dao=Eventos_DAO()
+        self.daoEvento=Eventos_DAO()
+        self.daoFornecedor=FornecedorDAO()
+        self.daoUsuario=UsuarioDAO()
+        
+        self.telaFornecedor=ViewCadastroFornecedor()
         self.page=page
-        self.tela=tela
+        self.telaLogin=tela
         #self.listarEventos()
-        self.tela.btnEntrarUsuario.on_click=self.trocaTelaUsuario
-        self.tela.btnEntrarFornecedor.on_click=self.trocaTelaFornecedor
-        self.tela.cadastroUsuario.on_click=self.trocaTelacadastroUsuario
-        self.tela.cadastroFornecedor.on_click=self.trocaTelacadastroFornecedor
+        self.telaLogin.btnEntrarUsuario.on_click=self.trocaTelaUsuario
+        self.telaLogin.btnEntrarFornecedor.on_click=self.trocaTelaFornecedor
+        self.telaLogin.cadastroUsuario.on_click=self.trocaTelacadastroUsuario
+        self.telaLogin.cadastroFornecedor.on_click=self.trocaTelacadastroFornecedor
 
 
         self.page.update()
@@ -25,44 +33,78 @@ class ViewController:
 
     def trocaTelaUsuario(self,e)->None:
         
-        if len (self.tela.email.value)==0:
-            self.tela.email.error="Você precisa digitar o login"
+        if len (self.telaLogin.email.value)==0:
+            self.telaLogin.email.error="Você precisa digitar o login"
             self.page.update()
         else:
-            self.tela.email.error=""
+            self.telaLogin.email.error=""
             self.page.update()
-            if  len(self.tela.password.value)>0:
+            if  len(self.telaLogin.password.value)>0:
                 self.page.go("/inicial")
             else:
-                self.tela.password.error="senha ou email esta incorreta"
+                self.telaLogin.password.error="senha ou email esta incorreta"
                 self.page.update()
     
     def trocaTelaFornecedor(self,e)->None:
-            if len(self.tela.cnpj.value)==0:
-                self.tela.cnpj.error="Você precisa digitar o login"
-                self.tela.cnpj.update()
+            if len(self.telaLogin.cnpj.value)==0:
+                self.telaLogin.cnpj.error="Você precisa digitar o login"
+                self.telaLogin.cnpj.update()
                 
             else:
-                self.tela.cnpj.error=""
-                self.tela.cnpj.update()
-                print("estou aqui")
-                if  len(self.tela.password.value)>0:
+                self.telaLogin.cnpj.error=""
+                self.telaLogin.cnpj.update()
+                
+                if  len(self.telaLogin.password.value)>0:
                     
                     self.page.go("/inicial")
-                    print("ola")
+                    
                 else:
-                    self.tela.password.error="senha ou cnpj esta incorreta"
-                    self.tela.password.update()
-                    print('nao ')
+                    self.telaLogin.password.error="senha ou cnpj esta incorreta"
+                    self.telaLogin.password.update()
+                    
 
 
     def trocaTelacadastroUsuario(self,e)->None:
         self.page.go("/cadastroUsuario")
+        u=Usuario(
+            self.telaUsuario.nome.value,
+            self.telaUsuario.email.value,
+            self.telaUsuario.cadastrarPassword.value
+
+
+        )
+        try:
+            self.daoUsuario.addUsuario(u.usuarioDict)
+
+
+            self.telaLogin.email.update()
+            self.telaLogin.password.update()
+
+            
+        except Exception as e :
+            print(e)
 
 
     def trocaTelacadastroFornecedor(self,e)->None:
-        print("botao clicado")
         self.page.go("/cadastroFornecedor")
+        f=Fornecedor(
+
+            self.telaFornecedor.nome.value,
+            self.telaFornecedor.cnpj.value,
+            self.telaFornecedor.cadastrarPassword.value
+
+        )
+        try:
+            self.daoFornecedor.addFornecedor(f.fornecedorDict)
+
+            self.telaFornecedor.nome.update()
+            self.telaFornecedor.cnpj.update()
+            self.telaFornecedor.cadastrarPassword.update()
+
+
+        except Exception as e:
+            print(e)
+
         
 
         
