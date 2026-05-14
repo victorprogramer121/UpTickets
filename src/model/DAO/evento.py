@@ -28,6 +28,7 @@ class Eventos_DAO:
                  raise ValueError("Nenhum produto encontrado com esse ID")
             self.__conn.historicoCadastro(novaLista)
             print("deletado com sucesso")
+            
 
 if __name__ == '__main__':
     e1=Eventos_DAO()
