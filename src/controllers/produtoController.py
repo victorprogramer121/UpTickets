@@ -9,52 +9,60 @@ from flet import *
 
 class ViewController:
 
-    def init(self,page,tela:ViewLogin):
+    def __init__(self,page,tela:ViewLogin):
         self.dao=Eventos_DAO()
-
-
         self.page=page
         self.tela=tela
-        self.listarEventos()
-        self.btnEntrarUsuario.on_click=self.trocaTelaUsuario
-        self.btnEntrarFornecedor.on_click=self.trocaTelaFornecedor
-        self.cadastroUsuario.on_click=self.trocaTelacadastroUsuario
-        self.cadastroFornecedor=self.trocaTelacadastroFornecedor
+        #self.listarEventos()
+        self.tela.btnEntrarUsuario.on_click=self.trocaTelaUsuario
+        self.tela.btnEntrarFornecedor.on_click=self.trocaTelaFornecedor
+        self.tela.cadastroUsuario.on_click=self.trocaTelacadastroUsuario
+        self.tela.cadastroFornecedor.on_click=self.trocaTelacadastroFornecedor
 
 
-    def trocaTelaUsuario(self)->None:
-        if len (self.email.value)==0:
-            self.email.error="Você precisa digitar o login"
-            self.email.update()
+        self.page.update()
+
+
+    def trocaTelaUsuario(self,e)->None:
+        
+        if len (self.tela.email.value)==0:
+            self.tela.email.error="Você precisa digitar o login"
+            self.page.update()
         else:
-            self.email.error=""
-            self.email.update()
-            if self.email.value>0 and self.password>0:
-                self.pagina.go("/inicial")
+            self.tela.email.error=""
+            self.page.update()
+            if  len(self.tela.password.value)>0:
+                self.page.go("/inicial")
             else:
-                self.password.error="senha ou email esta incorreta"
-                self.password.update
+                self.tela.password.error="senha ou email esta incorreta"
+                self.page.update()
     
-    def trocaTelaFornecedor(self)->None:
-            if len (self.cnpj.value)==0:
-                self.cnpj.error="Você precisa digitar o login"
-                self.cnpj.update()
+    def trocaTelaFornecedor(self,e)->None:
+            if len(self.tela.cnpj.value)==0:
+                self.tela.cnpj.error="Você precisa digitar o login"
+                self.tela.cnpj.update()
+                
             else:
-                self.cnpj.error=""
-                self.cnpj.update()
-                if self.cnpj.value>0 and self.password>0:
-                    self.pagina.go("/inicial")
+                self.tela.cnpj.error=""
+                self.tela.cnpj.update()
+                print("estou aqui")
+                if  len(self.tela.password.value)>0:
+                    
+                    self.page.go("/inicial")
+                    print("ola")
                 else:
-                    self.password.error="senha ou email esta incorreta"
-                    self.password.update
+                    self.tela.password.error="senha ou cnpj esta incorreta"
+                    self.tela.password.update()
+                    print('nao ')
 
 
-    def trocaTelacadastroUsuario(self)->None:
-        self.pagina.go("/cadastroUsuario")
+    def trocaTelacadastroUsuario(self,e)->None:
+        self.page.go("/cadastroUsuario")
 
 
-    def trocaTelacadastroFornecedor(self)->None:
-        self.pagina.go("/cadastroFornecedor")
+    def trocaTelacadastroFornecedor(self,e)->None:
+        print("botao clicado")
+        self.page.go("/cadastroFornecedor")
         
 
         

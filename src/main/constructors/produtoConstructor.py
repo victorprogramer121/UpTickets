@@ -3,7 +3,7 @@ from src.controllers.produtoController import ViewController
 
 def produtoConstructor(page):
     loginView=ViewLogin(page)
-    #ProdutoController=ProdutoController(page,ViewController)
+    controlador=ViewController(page,loginView)
 
 
 
