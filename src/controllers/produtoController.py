@@ -15,10 +15,6 @@ class ViewController:
 
     def __init__(self,page,tela:ViewLogin):
         self.daoEvento=Eventos_DAO()
-        self.daoFornecedor=FornecedorDAO()
-        self.daoUsuario=UsuarioDAO()
-        
-        self.telaFornecedor=ViewCadastroFornecedor()
         self.page=page
         self.telaLogin=tela
         #self.listarEventos()
@@ -65,46 +61,14 @@ class ViewController:
 
 
     def trocaTelacadastroUsuario(self,e)->None:
-        self.page.go("/cadastroUsuario")
-        u=Usuario(
-            self.telaUsuario.nome.value,
-            self.telaUsuario.email.value,
-            self.telaUsuario.cadastrarPassword.value
+            self.page.go("cadastroUsuario")
+            self.page.update()
 
-
-        )
-        try:
-            self.daoUsuario.addUsuario(u.usuarioDict)
-
-
-            self.telaLogin.email.update()
-            self.telaLogin.password.update()
-
-            
-        except Exception as e :
-            print(e)
 
 
     def trocaTelacadastroFornecedor(self,e)->None:
         self.page.go("/cadastroFornecedor")
-        f=Fornecedor(
-
-            self.telaFornecedor.nome.value,
-            self.telaFornecedor.cnpj.value,
-            self.telaFornecedor.cadastrarPassword.value
-
-        )
-        try:
-            self.daoFornecedor.addFornecedor(f.fornecedorDict)
-
-            self.telaFornecedor.nome.update()
-            self.telaFornecedor.cnpj.update()
-            self.telaFornecedor.cadastrarPassword.update()
-
-
-        except Exception as e:
-            print(e)
-
+        self.page.update()
         
 
         
