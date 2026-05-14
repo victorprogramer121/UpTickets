@@ -12,19 +12,23 @@ from flet.controls.material import tabs
 class ViewLogin(View):
     def __init__(self,page:Page):
         super().__init__(
-            route="/")
+            )
 
         page.title="Up Tickets+"
-        page.ft.bgcolor="White"
+
+        
 
 
 
 
         self.email = TextField(label="Email",color="Black",col=5 )
-        self.password=TextField(label="Password",can_reveal_password=False,col=5,color="Black")
+        self.password=TextField(label="Password",can_reveal_password=True,col=5,color="Black")
         self.cnpj=TextField(label="CNPJ",col=5,color="Black")
-        self.btnEntrar=Button("Entrar",col=3)
-        self.cadastro=Text("é seu primeiro acesso? Clique para se cadastrar")
+        self.btnEntrarUsuario=Button("Entrar",col=3)
+        self.btnEntrarFornecedor=Button("Entrar",col=3)
+        self.cadastroUsuario=Button("Cadastro",col=3)
+        self.cadastroFornecedor=Button("Cadastro",col=3)
+        self.route="/"
 
 
 
@@ -60,7 +64,7 @@ class ViewLogin(View):
                                                        ),
                                                        ResponsiveRow(
                                                            controls=[
-                                                               self.btnEntrar
+                                                               self.btnEntrarUsuario,self.cadastroUsuario
                                                            ],
                                                            alignment=MainAxisAlignment.CENTER
                                                        )
@@ -85,7 +89,7 @@ class ViewLogin(View):
                                                         ),
                                                        ResponsiveRow(
                                                            controls=[
-                                                               self.btnEntrar
+                                                               self.btnEntrarFornecedor,self.cadastroFornecedor
                                                            ],
                                                            alignment=MainAxisAlignment.CENTER
                                                        )
