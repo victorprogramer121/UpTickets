@@ -1,0 +1,107 @@
+#TELA CADASTRO USUARIO
+
+from certifi import contents
+from flet import *
+import flet as ft
+from flet.controls.core import column, icon
+from flet.controls.material import container, icon_button
+
+
+class ViewCadastroUsuario(View):
+    def __init__(self,page:Page):
+        super().__init__(
+            route="/cadastroUsuario")
+
+
+        page.title="Up Tickets+"
+
+
+        self.nome=TextField(label="Nome",col=5)
+        self.cadastrarPassword=TextField(label="Password",col=5)
+        self.email=TextField(label="Email",col=5)
+        self.btnCadastro = Button("Cadastrar", col=3, color="Blue",icon=ft.Icons.LOGIN)
+
+
+
+    def build(self):
+        modalBorda=Container(
+            content=Column(
+                controls=[
+                    Row(
+                        controls=[
+                            # ft.IconButton(icon=Icons.MENU),
+                            #tentar arrumar o texto para o meio do container
+                            ft.Container(expand=True),
+                            ft.Text("Up Tickets+",text_align=TextAlign.JUSTIFY,size=20,color="Black")
+
+                        ]
+                    )
+                ]
+
+            ),
+            bgcolor="Blue",
+            width=200,
+            height=75,
+            border_radius=0,
+
+        )
+
+
+
+        modalCadastro=Container(
+            content=Column(
+                controls=[
+                    ResponsiveRow(
+                        controls=[
+                            self.email
+                        ],
+                        alignment=MainAxisAlignment.CENTER,
+                        vertical_alignment=CrossAxisAlignment.CENTER
+                    ),
+                    ResponsiveRow(
+                        controls=[
+                            self.nome
+                        ],
+                        alignment=MainAxisAlignment.CENTER,
+                        vertical_alignment=CrossAxisAlignment.CENTER
+                    ),
+                    ResponsiveRow(
+                        controls=[
+                            self.cadastrarPassword
+                        ],
+                        alignment=MainAxisAlignment.CENTER,
+                        vertical_alignment=CrossAxisAlignment.CENTER
+                    ),
+                        ResponsiveRow(
+                            controls=[
+                                self.btnCadastro
+                            ],
+                            alignment=MainAxisAlignment.SPACE_AROUND
+
+                        )
+
+                ],
+
+                #margem do container
+                margin=100
+
+
+            ),
+            # bgcolor="White",
+
+        )
+
+
+
+
+        self.controls=[
+            ResponsiveRow(
+                controls=[
+                    modalBorda,modalCadastro
+                ],
+                alignment=MainAxisAlignment.SPACE_AROUND
+            )
+        ]
+
+
+        return self.controls

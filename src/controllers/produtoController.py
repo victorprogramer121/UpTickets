@@ -1,0 +1,159 @@
+from src.model.entitys.evento import Evento
+from src.model.DAO.evento import Eventos_DAO
+from src.infrastructure.services.geradorID import GeradorID
+from src.view.viewLogin import ViewLogin
+from src.view.viewCadastroFornecedor import ViewCadastroFornecedor
+from src.view.viewCadastroUsuario import ViewCadastroUsuario
+from flet import *
+
+
+class ViewController:
+
+    def __init__(self,page,tela:ViewLogin):
+        self.dao=Eventos_DAO()
+        self.page=page
+        self.tela=tela
+        #self.listarEventos()
+        self.tela.btnEntrarUsuario.on_click=self.trocaTelaUsuario
+        self.tela.btnEntrarFornecedor.on_click=self.trocaTelaFornecedor
+        self.tela.cadastroUsuario.on_click=self.trocaTelacadastroUsuario
+        self.tela.cadastroFornecedor.on_click=self.trocaTelacadastroFornecedor
+
+
+        self.page.update()
+
+
+    def trocaTelaUsuario(self,e)->None:
+        
+        if len (self.tela.email.value)==0:
+            self.tela.email.error="Você precisa digitar o login"
+            self.page.update()
+        else:
+            self.tela.email.error=""
+            self.page.update()
+            if  len(self.tela.password.value)>0:
+                self.page.go("/inicial")
+            else:
+                self.tela.password.error="senha ou email esta incorreta"
+                self.page.update()
+    
+    def trocaTelaFornecedor(self,e)->None:
+            if len(self.tela.cnpj.value)==0:
+                self.tela.cnpj.error="Você precisa digitar o login"
+                self.tela.cnpj.update()
+                
+            else:
+                self.tela.cnpj.error=""
+                self.tela.cnpj.update()
+                print("estou aqui")
+                if  len(self.tela.password.value)>0:
+                    
+                    self.page.go("/inicial")
+                    print("ola")
+                else:
+                    self.tela.password.error="senha ou cnpj esta incorreta"
+                    self.tela.password.update()
+                    print('nao ')
+
+
+    def trocaTelacadastroUsuario(self,e)->None:
+        self.page.go("/cadastroUsuario")
+
+
+    def trocaTelacadastroFornecedor(self,e)->None:
+        print("botao clicado")
+        self.page.go("/cadastroFornecedor")
+        
+
+        
+
+
+
+
+    def listarEventos(self)->None:
+        self.tela.limparLista.rows.clear()
+        caixa=Container(
+            content=Column(
+                controls=[
+                    ResponsiveRow(
+                        controls=[
+                            Image(src="src/view/imagens/party.jpg"),
+                            Image(src="src/view/imagens/videogame.jpg"),
+                            Image(src="src/view/imagens/reuniao.jpg")
+                        ]
+                    ),
+                    ResponsiveRow(
+                        controls=[
+
+                        ]
+                    )
+                ]
+                    
+                
+            )
+            
+        )
+        self.tela.page.add(caixa)
+        
+        opcao=input("escolha a imagem do seu evento")
+        match opcao:
+
+            case "1":
+                        
+                for evento in self.dao.lerEventos():
+                    caixa=Container(
+                        content=Column(
+                            controls=[
+                                ResponsiveRow(controls=[Image(src="src\view\imagens\party.jpg")
+                                    
+                                    
+                                ]
+                                )
+                            ]
+                        )
+                    )
+                
+
+
+    def buscarEvento(self, id:int):
+        try:
+            return self.dao.buscarPorID(id)
+        except Exception as e:
+            return e
+from src.model.DAO.databaseDB import DatabaseDB
+
+
+
+
+
+    
+
+
+class UsuarioDAO:
+
+    def init(self):
+        self.conn=DatabaseDB("usuarios.json")
+
+
+    def addUsuario(self,dados:dict):
+        try:
+            self.conn.salvar(dados)
+            return f"usuario salvo com sucesso"
+        except Exception as e:
+            raise ValueError("erro na hora de salva fdp desgracado, salva essa porra de novo, jumento",e)
+
+
+    def deletarUsuario(self,nomeUsuario):
+        novoUsuario=[usuario for usuario in self.lerUsuario() if usuario["email"]!=nomeUsuario]
+        if len(novoUsuario)==len(self.lerUsuario()):
+            raise ValueError("nenhum usuario encontrado")
+        self.conn.historicoCadastro(novoUsuario)
+        print("deletado com sucesso")
+
+
+    def lerUsuario(self):
+        return self.conn.lerArquivo()
+    
+
+
+    
