@@ -1,0 +1,241 @@
+Index: src/infrastructure/database/fornecedores.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[\r\n    {\r\n        \"nomeFornecedor\": \"Victor LTDA\",\r\n        \"senhaFornecedor\": \"vitin0909\",\r\n        \"cpnj\": \"76867559757513\"\r\n    }\r\n]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/infrastructure/database/fornecedores.json b/src/infrastructure/database/fornecedores.json
+--- a/src/infrastructure/database/fornecedores.json	(revision aab4123199e2c0e37be8ebe4746ff341c09e4c78)
++++ b/src/infrastructure/database/fornecedores.json	(date 1778677482145)
+@@ -1,7 +1,42 @@
+ [
+     {
+-        "nomeFornecedor": "Victor LTDA",
++        "nomeFornecedor": "SUPPLY EVENTOS",
+         "senhaFornecedor": "vitin0909",
+         "cpnj": "76867559757513"
++    },
++    {
++        "nomeFornecedor": "APOIO PRODUÇÕES",
++        "senhaFornecedor": "vitin0808",
++        "cpnj": "76867559757781"
++    },
++    {
++        "nomeFornecedor": "SÃO PAULO DJ",
++        "senhaFornecedor": "sp0808",
++        "cpnj": "76867569757781"
++    },
++    {
++        "nomeFornecedor": "ABN EVENTOS",
++        "senhaFornecedor": "sp0808",
++        "cpnj": "76867569757781"
++    },
++    {
++        "nomeFornecedor": "MM GRUPO EVENTOS",
++        "senhaFornecedor": "sp0893578",
++        "cpnj": "15327569757781"
++    },
++    {
++        "nomeFornecedor": "EVENT FACTORY",
++        "senhaFornecedor": "76dva3578",
++        "cpnj": "15328769757781"
++    },
++    {
++        "nomeFornecedor": "ALFA PRODUÇÕES EVENTOS",
++        "senhaFornecedor": "76dvao361bjd",
++        "cpnj": "15323339757781"
++    },
++    {
++        "nomeFornecedor": "LUI EVENTOS E PROMOÇÕES",
++        "senhaFornecedor": "76d982o361bjd",
++        "cpnj": "1532325757781"
+     }
+ ]
+\ No newline at end of file
+Index: src/main/handlePorcess.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/handlePorcess.py b/src/infrastructure/services/pastaDB.py
+rename from src/main/handlePorcess.py
+rename to src/infrastructure/services/pastaDB.py
+--- a/src/main/handlePorcess.py	(revision aab4123199e2c0e37be8ebe4746ff341c09e4c78)
++++ b/src/infrastructure/services/pastaDB.py
+@@ -1,0 +1,7 @@
++import os
++from pathlib import Path
++
++
++class PastaDB:
++    def __init__(self):
++        self.path = Path(__file__).resolve().parent.parent / "database"
+\ No newline at end of file
+Index: src/model/DAO/databaseDB.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import json\r\nfrom json import JSONDecodeError\r\n\r\n\r\nclass DatabaseDB:\r\n    def __init__(self, pastaArquivo):\r\n        self.__arquivo=fr\"C:\\Users\\victor.jabatista\\PycharmProjects\\PythonProject\\UpTickets\\src\\infrastructure\\database\\{pastaArquivo}\"\r\n        self.__pastaArquivo=pastaArquivo\r\n\r\n    def lerArquivo(self)->list:\r\n        try:\r\n            with open(self.__arquivo, \"r+\", encoding=\"UTF-8\") as f:\r\n                return json.load(f)\r\n        except JSONDecodeError:#aqui é um tratamento de erro caso o arquivo não seja um JSON. Ele é tratado aqui mesmo\r\n            return []\r\n        except:\r\n            raise ValueError(\"Erro ao abrir o arquivo: \", self.__pastaArquivo)#aqui trata o erro, jogando esse erro para ser tratado com outro arquivo\r\n\r\n    def salvar(self, dados):\r\n        listaJSON=self.lerArquivo()\r\n        try:\r\n            with open(self.__arquivo, \"w\", encoding=\"UTF-8\") as f:\r\n                listaJSON.append(dados)\r\n                json.dump(listaJSON, f, ensure_ascii=False, indent=4)\r\n                print(\"Salvo no JSON!\")\r\n        except:\r\n            raise ValueError(\"Não foi possível salvar no JSON\", self.__pastaArquivo)\r\n        #aqui é uma função que faz com que um novo cadastro vá para o JSON. Caso não encontre o arquivo do JSON, irá dar o erro, que é tratado em outro local\r\n\r\n    def historicoCadastro(self, listaCadastros):\r\n        try:\r\n            with open(self.__arquivo, \"w\", encoding=\"UTF-8\")as f:\r\n                json.dump(listaCadastros, f, ensure_ascii=False, indent=4)\r\n                print(\"Histórico salvo\")\r\n        except:\r\n            raise ValueError(\"Não foi possível salvar o histórico\", self.__pastaArquivo)\r\n    #Salva aquilo que foi deletado
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/model/DAO/databaseDB.py b/src/model/DAO/databaseDB.py
+--- a/src/model/DAO/databaseDB.py	(revision aab4123199e2c0e37be8ebe4746ff341c09e4c78)
++++ b/src/model/DAO/databaseDB.py	(date 1778677482145)
+@@ -1,10 +1,11 @@
+ import json
+ from json import JSONDecodeError
++from src.infrastructure.services.pastaDB import PastaDB
+ 
+ 
+ class DatabaseDB:
+     def __init__(self, pastaArquivo):
+-        self.__arquivo=fr"C:\Users\victor.jabatista\PycharmProjects\PythonProject\UpTickets\src\infrastructure\database\{pastaArquivo}"
++        self.__arquivo=fr"{PastaDB().path}\{pastaArquivo}"
+         self.__pastaArquivo=pastaArquivo
+ 
+     def lerArquivo(self)->list:
+Index: src/infrastructure/database/eventos.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/infrastructure/database/eventos.json b/src/infrastructure/database/eventos.json
+--- a/src/infrastructure/database/eventos.json	(revision aab4123199e2c0e37be8ebe4746ff341c09e4c78)
++++ b/src/infrastructure/database/eventos.json	(date 1778677482144)
+@@ -1,1 +1,16 @@
+-[]
+\ No newline at end of file
++[
++    {
++        "id": 1,
++        "nomeEvento": "kle",
++        "local": "rua",
++        "idadeMIN": 16,
++        "data": 160411
++    },
++    {
++        "id": 1,
++        "nomeEvento": "kle",
++        "local": "rua",
++        "idadeMIN": 16,
++        "data": 160411
++    }
++]
+\ No newline at end of file
+Index: src/model/DAO/fornecedor.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nfrom src.model.DAO.databaseDB import DatabaseDB\r\n\r\nclass FornecedorDAO:\r\n    def __init__(self):\r\n        self.__conn=DatabaseDB(\"fornecedores.json\")\r\n\r\n    def addFornecedor(self, dados:dict):\r\n        try:\r\n            self.__conn.salvar(dados)\r\n            return f\"Fornecedor salvo com sucesso\"\r\n        except Exception as e:\r\n            raise ValueError(\"Erro ao salvar o fornecedor\", e)\r\n        #Aqui faz a tratativa de erro, caso não salve o fornecedor na lista de fornecedores do banco de dados\r\n    def lerFornecedor(self):\r\n        try:\r\n            return self.__conn.lerArquivo()\r\n        except Exception as e:\r\n            raise ValueError(\"Erro ao ler fornecedor\",e)\r\n        #Tratativa de erro caso não tenha nenhum fornecedor na lista\r\n\r\n\r\n    def deletarFornecedor(self, nomeFornecedor):\r\n        novoFornecedor=[fornecedor for fornecedor in self.lerFornecedor() if fornecedor[\"nomeFornecedor\"]!=nomeFornecedor]\r\n        if len(novoFornecedor)==len(self.lerFornecedor()):\r\n            raise ValueError(\"Não existe nenhum cadastro desse fornecedor em nosso banco de dados\")\r\n\r\n        self.__conn.historicoCadastro(novoFornecedor)\r\n        print(f\"Deletado com sucesso\")\r\n        #aqui ele salva depois que deleta para atualizar o banco de dados\r\n\r\nif __name__ == '__main__':\r\n    f1=FornecedorDAO()\r\n    # dados={'nomeFornecedor':'Leonardo LTDA', 'senhaFornecedor':'vitin0909', 'cpnj':'76867559757513'}\r\n    # m=f1.addFornecedor(dados)\r\n    # print(m)\r\n    # primeiro código para inserir fornecedores dentro do banco de dados\r\n\r\n    try:\r\n        f1.deletarFornecedor(\"Leonardo LTDA\")\r\n    except Exception as e:\r\n        print(\"Erro:\", e)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/model/DAO/fornecedor.py b/src/model/DAO/fornecedor.py
+--- a/src/model/DAO/fornecedor.py	(revision aab4123199e2c0e37be8ebe4746ff341c09e4c78)
++++ b/src/model/DAO/fornecedor.py	(date 1778677482162)
+@@ -29,14 +29,18 @@
+         print(f"Deletado com sucesso")
+         #aqui ele salva depois que deleta para atualizar o banco de dados
+ 
+-if __name__ == '__main__':
+-    f1=FornecedorDAO()
++# if __name__ == '__main__':
++#     f1=FornecedorDAO()
+     # dados={'nomeFornecedor':'Leonardo LTDA', 'senhaFornecedor':'vitin0909', 'cpnj':'76867559757513'}
+     # m=f1.addFornecedor(dados)
+     # print(m)
+     # primeiro código para inserir fornecedores dentro do banco de dados
+ 
+-    try:
+-        f1.deletarFornecedor("Leonardo LTDA")
+-    except Exception as e:
+-        print("Erro:", e)
++    # try:
++    #     f1.deletarFornecedor("Leonardo LTDA")
++    # except Exception as e:
++    #     print("Erro: ", e)
++    # try:
++    #     f1.lerFornecedor()
++    # except Exception as e:
++    #     print("Erro: ",e)
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"15c3b783-343b-4213-87b5-208073e7482a\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;victorprogramer121&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/victorprogramer121/UpTickets.git&quot;,\r\n    &quot;accountId&quot;: &quot;bf2e6fba-34d3-45c5-aef9-ec0ddc7d6c92&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3DOXCgMMdjyQ6K2WuwkQvwOXomC\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"Python.databaseDB.executor\": \"Run\",\r\n    \"Python.evento.executor\": \"Run\",\r\n    \"Python.geradorID.executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\victor.jabatista\\PycharmProjects\\PythonProject\\UpTickets\\src\\main\" />\r\n      <recent name=\"C:\\Users\\victor.jabatista\\PycharmProjects\\PythonProject\\UpTickets\\src\\model\\DAO\" />\r\n      <recent name=\"C:\\Users\\victor.jabatista\\PycharmProjects\\PythonProject\\UpTickets\\src\\infrastructure\\database\" />\r\n      <recent name=\"C:\\Users\\victor.jabatista\\PycharmProjects\\PythonProject\\UpTickets\\src\\model\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"databaseDB\" type=\"PythonConfigurationType\" factoryName=\"Python\" nameIsGenerated=\"true\">\r\n      <module name=\"UpTickets\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$/src/model/DAO\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/src/model/DAO/databaseDB.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-1bde30d8e611-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.130\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"15c3b783-343b-4213-87b5-208073e7482a\" name=\"Changes\" comment=\"\" />\r\n      <created>1778153963766</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1778153963766</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision aab4123199e2c0e37be8ebe4746ff341c09e4c78)
++++ b/.idea/workspace.xml	(date 1778677482128)
+@@ -4,7 +4,17 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="15c3b783-343b-4213-87b5-208073e7482a" name="Changes" comment="" />
++    <list default="true" id="15c3b783-343b-4213-87b5-208073e7482a" name="Changes" comment="">
++      <change afterPath="$PROJECT_DIR$/src/main/handleProcess.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/UpTickets.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/UpTickets.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/infrastructure/database/eventos.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/database/eventos.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/infrastructure/database/fornecedores.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/database/fornecedores.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/handlePorcess.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/services/pastaDB.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/model/DAO/databaseDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DAO/databaseDB.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/model/DAO/fornecedor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DAO/fornecedor.py" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -49,6 +59,8 @@
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+     "RunOnceActivity.git.unshallow": "true",
++    "git-widget-placeholder": "master",
++    "last_opened_file_path": "C:/Users/victor.jabatista/Documents/GitHub/UpTickets",
+     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+   }
+ }]]></component>
+Index: .idea/UpTickets.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/.venv\" />\r\n    </content>\r\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.13 (UpTickets)\" jdkType=\"Python SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/UpTickets.iml b/.idea/UpTickets.iml
+--- a/.idea/UpTickets.iml	(revision aab4123199e2c0e37be8ebe4746ff341c09e4c78)
++++ b/.idea/UpTickets.iml	(date 1778677482128)
+@@ -4,7 +4,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.13 (UpTickets)" jdkType="Python SDK" />
++    <orderEntry type="jdk" jdkName="Python 3.13" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Black\">\r\n    <option name=\"sdkName\" value=\"Python 3.13 (UpTickets)\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.13 (UpTickets)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision aab4123199e2c0e37be8ebe4746ff341c09e4c78)
++++ b/.idea/misc.xml	(date 1778677482128)
+@@ -3,5 +3,5 @@
+   <component name="Black">
+     <option name="sdkName" value="Python 3.13 (UpTickets)" />
+   </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (UpTickets)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
+diff --git a/src/main/handleProcess.py b/src/main/handleProcess.py
+new file mode 100644
