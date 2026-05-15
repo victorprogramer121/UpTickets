@@ -38,6 +38,10 @@ class ViewLogin(View):
                                    TabBar(
                                        tabs=[
                                            Tab(label="Usuario"),
+<<<<<<< Updated upstream
+=======
+                                           
+>>>>>>> Stashed changes
                                        ]
                                    ),
                                    TabBarView(
@@ -67,7 +71,11 @@ class ViewLogin(View):
 
                                                )
                                            ),
+<<<<<<< Updated upstream
                                   
+=======
+                                           
+>>>>>>> Stashed changes
                                        ]
 
 
