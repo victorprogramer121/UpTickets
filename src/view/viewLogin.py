@@ -23,18 +23,14 @@ class ViewLogin(View):
 
         self.email = TextField(label="Email",color="Black",col=5 )
         self.password=TextField(label="Password",can_reveal_password=True,col=5,color="Black")
-        self.cnpj=TextField(label="CNPJ",col=5,color="Black")
         self.btnEntrarUsuario=Button("Entrar",col=3)
-        self.btnEntrarFornecedor=Button("Entrar",col=3)
-        self.cadastroUsuario=Button("Cadastro",col=3)
-        self.cadastroFornecedor=Button("Cadastro",col=3)
         self.route="/"
 
 
 
 
     def build(self):
-        troca_tela=ft.Tabs(selected_index=1,
+        troca_tela=ft.Tabs(selected_index=0,
                            length=3,
                            expand=True,
                            content=Column(
@@ -42,7 +38,6 @@ class ViewLogin(View):
                                    TabBar(
                                        tabs=[
                                            Tab(label="Usuario"),
-                                           Tab(label="Fornecedor")
                                        ]
                                    ),
                                    TabBarView(
@@ -64,7 +59,7 @@ class ViewLogin(View):
                                                        ),
                                                        ResponsiveRow(
                                                            controls=[
-                                                               self.btnEntrarUsuario,self.cadastroUsuario
+                                                               self.btnEntrarUsuario
                                                            ],
                                                            alignment=MainAxisAlignment.CENTER
                                                        )
@@ -72,30 +67,7 @@ class ViewLogin(View):
 
                                                )
                                            ),
-                                           Container(
-                                               content=Column(
-                                                   controls=[
-                                                       ResponsiveRow(
-                                                           controls=[
-                                                               self.cnpj
-                                                           ],
-                                                           alignment=MainAxisAlignment.CENTER
-                                                       ),
-                                                        ResponsiveRow(
-                                                            controls=[
-                                                                self.password
-                                                            ],
-                                                            alignment=MainAxisAlignment.CENTER
-                                                        ),
-                                                       ResponsiveRow(
-                                                           controls=[
-                                                               self.btnEntrarFornecedor,self.cadastroFornecedor
-                                                           ],
-                                                           alignment=MainAxisAlignment.CENTER
-                                                       )
-                                                   ]
-                                               )
-                                           )
+                                  
                                        ]
 
 
