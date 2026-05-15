@@ -3,11 +3,11 @@ from src.infrastructure.services.geradorID import GeradorID
 
 
 class Evento:
-    def __init__(self, id: int, nomeEvento: str, local: str,idadeMIN: int,data: dt = None):
+    def __init__(self, id: int, nomeEvento: str, local:  int,data: dt = None):
         # self.__cpf=cpf
         self.__nomeEvento = nomeEvento
         self.__local = local
-        self.__idadeMIN = idadeMIN
+       
         self.__data = data
         self.__id =id
 
@@ -18,10 +18,6 @@ class Evento:
     @property
     def nomeEvento(self) -> str:
         return self.__nomeEvento
-
-    @property
-    def idadeMIN(self) -> str:
-        return self.__idadeMIN
 
     @property
     def data(self) -> dt:
@@ -37,12 +33,11 @@ class Evento:
 
     # verificar se está correto
 
-    def evento(self) -> dict:
+    def eventoDict(self) -> dict:
         return {
             "id":self.__id,
             "nomeEvento":self.__nomeEvento,
             "local":self.__local,
-            "idadeMIN":self.__idadeMIN,
             "data":self.__data
             
         }
@@ -52,7 +47,6 @@ class Evento:
             dados["id"],
             dados["nomeEvento"],
             dados["local"],
-            dados["idadeMIN"],
             dados["data"]
         )
 
