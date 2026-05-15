@@ -1,5 +1,7 @@
 from src.main.constructors.produtoConstructor import produtoConstructor
-from src.main.constructors.cadastroUsuarioConstructor import CadastroTelaConstructor
+from src.main.constructors.cadastroUsuarioConstructor import cadastroUsuarioConstructor
+from src.main.constructors.cadastroFornecedorConstructor import cadastroFornecedorController
+from src.view.viewInicial import ViewInicial
 from flet import *
 
 
@@ -12,9 +14,21 @@ def app(page:Page):
         page.views.append(
             produtoConstructor(page)
                           )
-      
+        if page.route=="/cadastroFornecedor":
+            page.views.clear()
+            page.views.append(
+                cadastroFornecedorController(page)
+        )
+        
+
+        if page.route=="/cadastroUsuario":
+            page.views.clear()
+            page.views.append(
+                cadastroUsuarioConstructor(page)
+            )
 
         if page.route=="/inicial":
+            page.views.clear()
             page.views.append(
                 CadastroTelaConstructor(page)
             )

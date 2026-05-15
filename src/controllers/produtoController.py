@@ -12,10 +12,6 @@ class ViewController:
 
     def __init__(self,page,tela:ViewLogin):
         self.daoEvento=Eventos_DAO()
-       
-        self.daoUsuario=UsuarioDAO()
-        
-       
         self.page=page
         self.telaLogin=tela
         #self.listarEventos()
@@ -44,6 +40,65 @@ class ViewController:
     
 
 
+    def trocaTelacadastroUsuario(self,e)->None:
+            self.page.go("cadastroUsuario")
+            self.page.update()
+
+
+
+    def trocaTelacadastroFornecedor(self,e)->None:
+        self.page.go("/cadastroFornecedor")
+        self.page.update()
+        
+
+        
+
+
+
+
+    def listarEventos(self)->None:
+        self.tela.limparLista.rows.clear()
+        caixa=Container(
+            content=Column(
+                controls=[
+                    ResponsiveRow(
+                        controls=[
+                            Image(src="src/view/imagens/party.jpg"),
+                            Image(src="src/view/imagens/videogame.jpg"),
+                            Image(src="src/view/imagens/reuniao.jpg")
+                        ]
+                    ),
+                    ResponsiveRow(
+                        controls=[
+
+                        ]
+                    )
+                ]
+                    
+                
+            )
+            
+        )
+        self.tela.page.add(caixa)
+        
+        opcao=input("escolha a imagem do seu evento")
+        match opcao:
+
+            case "1":
+                        
+                for evento in self.dao.lerEventos():
+                    caixa=Container(
+                        content=Column(
+                            controls=[
+                                ResponsiveRow(controls=[Image(src="src\view\imagens\party.jpg")
+                                    
+                                    
+                                ]
+                                )
+                            ]
+                        )
+                    )
+                
 
 
     def buscarEvento(self, id:int):

@@ -1,11 +1,11 @@
-from src.view.viewInicial import ViewInicial
+from src.view.viewCadastroUsuario import ViewCadastroUsuario
+from src.controllers.cadastroUsuarioController import CadastroUsuarioController
 
-from src.controllers.cadastroTelaEvento import ViewInicialController
+def cadastroUsuarioConstructor(page):
 
-def CadastroTelaConstructor(page):
-    telaInicialController=ViewInicial(page)
-    controlador=ViewInicialController(page,telaInicialController)
-
+    telaCadastroUsuario=ViewCadastroUsuario(page)
+    controlador=CadastroUsuarioController(page,telaCadastroUsuario)
 
 
-    return telaInicialController
+
+    return telaCadastroUsuario
