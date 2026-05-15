@@ -5,6 +5,7 @@ from flet import *
 
 def app(page:Page):
     page.title="controle de eventos"
+    
 
 
     def changeRoute(e=None):
@@ -15,6 +16,7 @@ def app(page:Page):
       
 
         if page.route=="/inicial":
+            
             page.views.append(
                 CadastroTelaConstructor(page)
             )

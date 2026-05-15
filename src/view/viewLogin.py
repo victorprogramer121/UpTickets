@@ -21,10 +21,11 @@ class ViewLogin(View):
 
 
 
-        self.email = TextField(label="Email",color="Black",col=5 )
-        self.password=TextField(label="Password",can_reveal_password=True,col=5,color="Black")
+        self.email = TextField(label="Email",color="BLACK",col=5 )
+        self.password=TextField(label="Password",can_reveal_password=True,col=5,color="BLACK")
         self.btnEntrarUsuario=Button("Entrar",col=3)
         self.route="/"
+        self.bgcolor="WHITE"
 
 
 

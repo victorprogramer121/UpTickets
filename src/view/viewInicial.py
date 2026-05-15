@@ -13,18 +13,27 @@ class ViewInicial(View):
         self.local=TextField(label="Local",col=4)
         self.data=TextField(label="dia/mes/ano",col=4)
         self.btnADD=Button("Add",col=3)
+        self.bgcolor="WHITE"
+        
+        
+        
 
 
         self.tabelaEvento=DataTable(
             columns=[
                 
                 DataColumn(label=Text("id")),
-                DataColumn(label=Text("nomeEvento")),
+                DataColumn(label=Text("nome Evento")),
                 DataColumn(label=Text("local")),
                 DataColumn(label=Text("data"))
             ],
-            col=9
+            col=9,
+            bgcolor="WHITE",
+            border_radius= 10
+            
+            
         )
+        
 
 
     def build(self):
@@ -33,14 +42,18 @@ class ViewInicial(View):
         modalTabela=Container(
             content=self.tabelaEvento,
             
-            padding=Padding("20,0,0,10"),
-            expand=True
+            padding=Padding("20,10,10,10"),
+            expand=True,
+            
+            
+            
         )
         
 
 
         lateral=Container(content=(NavigationRail(
             selected_index=0,
+            bgcolor="WHITE",
             label_type=NavigationRailLabelType.ALL,
             min_width=100,
             min_extended_width=400,
@@ -62,6 +75,7 @@ class ViewInicial(View):
                 controls=[lateral, VerticalDivider(width=1), modalTabela],
                 expand=True
             )
+        
         ]
         self.layout_inicial = controles_originais
 
@@ -84,6 +98,7 @@ class ViewInicial(View):
                             self.nomeEvento,self.local,self.data
                         ],
                         alignment=MainAxisAlignment.CENTER
+                        
                     ),
                     ResponsiveRow(
                         controls=[
@@ -95,6 +110,7 @@ class ViewInicial(View):
                 ]
                 
             )
+            
         )
 
         self.controls =[
