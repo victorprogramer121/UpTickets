@@ -1,7 +1,7 @@
 from flet import *
 import flet as ft
 from flet.controls.core import icon
-from flet.controls.material import bottom_app_bar
+
 
 
 class ViewInicial(View):
@@ -9,38 +9,34 @@ class ViewInicial(View):
         super().__init__()
        
         self.route="/inicial"
+        self.nomeEvento=TextField(label="Nome Evento",col=4)
+        self.local=TextField(label="Local",col=4)
+        self.data=TextField(label="dia/mes/ano",col=4)
+        self.btnADD=Button("Add",col=3)
+
+
+        self.tabelaEvento=DataTable(
+            columns=[
+                
+                DataColumn(label=Text("id")),
+                DataColumn(label=Text("nomeEvento")),
+                DataColumn(label=Text("local")),
+                DataColumn(label=Text("data"))
+            ],
+            col=9
+        )
 
 
     def build(self):
 
-        caixa=Container(
-            expand=True,
-            content=Column(
-                controls=[
-                    ResponsiveRow(
-                        controls=[
-                            Image(src=fr"C:\Users\klebe\PycharmProjects\SistemadeVendas\asc\view\party.jpg")
-                        ],
-                        alignment=MainAxisAlignment.CENTER
-                    ),
-                    ResponsiveRow(
-                        controls=[
-                            Text("Evento",text_align=TextAlign.JUSTIFY,size=20,color="red",weight=FontWeight.BOLD)
-                        ]
-                    ),
-                    ResponsiveRow(
-                        controls=[
-                            TextButton("Comprar",col=4),
-                            Icon(icon=CupertinoIcons.HEART,col=4),
-
-                        ],
-                        alignment=MainAxisAlignment.SPACE_AROUND
-                    )
-                ],
-                col={ResponsiveRowBreakpoint.XS:12,
-                     ResponsiveRowBreakpoint.LG:4}
-            )
+  
+        modalTabela=Container(
+            content=self.tabelaEvento,
+            
+            padding=Padding("20,0,0,10"),
+            expand=True
         )
+        
 
 
         lateral=Container(content=(NavigationRail(
@@ -48,30 +44,72 @@ class ViewInicial(View):
             label_type=NavigationRailLabelType.ALL,
             min_width=100,
             min_extended_width=400,
-            leading=FloatingActionButton(icon=Icons.CREATE,content="Adicionar"),
+            leading=FloatingActionButton(icon=Icons.CREATE,content="Adicionar",
+                                         on_click=self.telaADD),
             group_alignment=0.9,
             destinations=[
                 NavigationRailDestination(
                     icon=ft.Icons.EXIT_TO_APP,label="Sair"
                 )
             ],
+            on_change=self.aoMudarDestino
         )
         )
 
         )
-
-        self.controls=[
-           Row(
-                controls=[
-                    lateral,
-                    VerticalDivider(width=1),
-                    caixa
-                ],
+        controles_originais = [
+            Row(
+                controls=[lateral, VerticalDivider(width=1), modalTabela],
                 expand=True
             )
         ]
+        self.layout_inicial = controles_originais
+
+        self.controls = controles_originais
+        self.controls = controles_originais
+
 
 
         return self.controls
+    
+
+    def telaADD(self, e=None):
+
+
+        add=Container(
+            content=Column(
+                controls=[
+                    ResponsiveRow(
+                        controls=[
+                            self.nomeEvento,self.local,self.data
+                        ],
+                        alignment=MainAxisAlignment.CENTER
+                    ),
+                    ResponsiveRow(
+                        controls=[
+                            self.btnADD
+                        ],
+                        alignment=MainAxisAlignment.CENTER
+                    )
+                    
+                ]
+                
+            )
+        )
+
+        self.controls =[
+            ResponsiveRow(
+                controls=[
+                    add
+                ]
+            )
+        ]
         
         
+        self.update()
+
+
+    def aoMudarDestino(self,e):
+
+        if e.control.selected_index==0:
+            self.page.go("/")

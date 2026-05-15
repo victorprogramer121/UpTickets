@@ -4,12 +4,12 @@ from json import JSONDecodeError
 
 class DatabaseDB:
     def __init__(self, pastaArquivo):
-        self.__arquivo=fr"C:\Users\victor.jabatista\PycharmProjects\PythonProject\UpTickets\src\infrastructure\database\{pastaArquivo}"
+        self.__arquivo=fr"src\infrastructure\database\{pastaArquivo}"
         self.__pastaArquivo=pastaArquivo
 
     def lerArquivo(self)->list:
         try:
-            with open(self.__arquivo, "r+", encoding="UTF-8") as f:
+            with open(self.__arquivo, "r", encoding="UTF-8") as f:
                 return json.load(f)
         except JSONDecodeError:#aqui é um tratamento de erro caso o arquivo não seja um JSON. Ele é tratado aqui mesmo
             return []
@@ -23,6 +23,8 @@ class DatabaseDB:
                 listaJSON.append(dados)
                 json.dump(listaJSON, f, ensure_ascii=False, indent=4)
                 print("Salvo no JSON!")
+        except JSONDecodeError:#aqui é um tratamento de erro caso o arquivo não seja um JSON. Ele é tratado aqui mesmo
+            return []
         except:
             raise ValueError("Não foi possível salvar no JSON", self.__pastaArquivo)
         #aqui é uma função que faz com que um novo cadastro vá para o JSON. Caso não encontre o arquivo do JSON, irá dar o erro, que é tratado em outro local

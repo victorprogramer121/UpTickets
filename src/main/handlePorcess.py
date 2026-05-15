@@ -30,7 +30,7 @@ def app(page:Page):
         if page.route=="/inicial":
             page.views.clear()
             page.views.append(
-                ViewInicial(page)
+                CadastroTelaConstructor(page)
             )
         page.update()
 

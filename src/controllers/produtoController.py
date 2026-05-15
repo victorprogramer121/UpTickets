@@ -1,13 +1,10 @@
-from src.model.entitys.evento import Evento
+
 from src.model.DAO.evento import Eventos_DAO
-from src.infrastructure.services.geradorID import GeradorID
 from src.view.viewLogin import ViewLogin
-from src.view.viewCadastroFornecedor import ViewCadastroFornecedor
-from src.view.viewCadastroUsuario import ViewCadastroUsuario
-from src.model.entitys.usuario import Usuario
-from src.model.DAO.usuario import UsuarioDAO
-from src.model.entitys.fornecedor import Fornecedor
-from src.model.DAO.fornecedor import FornecedorDAO
+
+
+
+
 from flet import *
 
 
@@ -19,9 +16,9 @@ class ViewController:
         self.telaLogin=tela
         #self.listarEventos()
         self.telaLogin.btnEntrarUsuario.on_click=self.trocaTelaUsuario
-        self.telaLogin.btnEntrarFornecedor.on_click=self.trocaTelaFornecedor
-        self.telaLogin.cadastroUsuario.on_click=self.trocaTelacadastroUsuario
-        self.telaLogin.cadastroFornecedor.on_click=self.trocaTelacadastroFornecedor
+        
+      
+
 
 
         self.page.update()
@@ -29,7 +26,7 @@ class ViewController:
 
     def trocaTelaUsuario(self,e)->None:
         
-        if len (self.telaLogin.email.value)==0:
+        if len (self.telaLogin.email.value)=="@":
             self.telaLogin.email.error="Você precisa digitar o login"
             self.page.update()
         else:
@@ -41,23 +38,6 @@ class ViewController:
                 self.telaLogin.password.error="senha ou email esta incorreta"
                 self.page.update()
     
-    def trocaTelaFornecedor(self,e)->None:
-            if len(self.telaLogin.cnpj.value)==0:
-                self.telaLogin.cnpj.error="Você precisa digitar o login"
-                self.telaLogin.cnpj.update()
-                
-            else:
-                self.telaLogin.cnpj.error=""
-                self.telaLogin.cnpj.update()
-                
-                if  len(self.telaLogin.password.value)>0:
-                    
-                    self.page.go("/inicial")
-                    
-                else:
-                    self.telaLogin.password.error="senha ou cnpj esta incorreta"
-                    self.telaLogin.password.update()
-                    
 
 
     def trocaTelacadastroUsuario(self,e)->None:
