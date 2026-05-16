@@ -1,6 +1,7 @@
 from flet import *
 import flet as ft
 from flet.controls.core import icon
+from flet import Tab
 
 
 
@@ -13,7 +14,7 @@ class ViewInicial(View):
         self.local=TextField(label="Local",col=4)
         self.data=TextField(label="dia/mes/ano",col=4)
         self.btnADD=Button("Add",col=3)
-        self.bgcolor="WHITE"
+        self.bgcolor="Black"
         
         
         
@@ -28,8 +29,8 @@ class ViewInicial(View):
                 DataColumn(label=Text("data"))
             ],
             col=9,
-            bgcolor="WHITE",
-            border_radius= 10
+            bgcolor="ft.Colors.ON_PRIMARY_FIXED",
+            border_radius= 20
             
             
         )
@@ -38,7 +39,9 @@ class ViewInicial(View):
 
     def build(self):
 
-  
+
+
+          
         modalTabela=Container(
             content=self.tabelaEvento,
             
@@ -48,84 +51,51 @@ class ViewInicial(View):
             
             
         )
-        
 
 
-        lateral=Container(content=(NavigationRail(
-            selected_index=0,
-            bgcolor="WHITE",
-            label_type=NavigationRailLabelType.ALL,
-            min_width=100,
-            min_extended_width=400,
-            leading=FloatingActionButton(icon=Icons.CREATE,content="Adicionar",
-                                         on_click=self.telaADD),
-            group_alignment=0.9,
-            destinations=[
-                NavigationRailDestination(
-                    icon=ft.Icons.EXIT_TO_APP,label="Sair"
-                )
-            ],
-            on_change=self.aoMudarDestino
-        )
-        )
-
-        )
-        controles_originais = [
-            Row(
-                controls=[lateral, VerticalDivider(width=1), modalTabela],
-                expand=True
-            )
-        
-        ]
-        self.layout_inicial = controles_originais
-
-        self.controls = controles_originais
-        self.controls = controles_originais
-
-
-
-        return self.controls
-    
-
-    def telaADD(self, e=None):
-
-
-        add=Container(
+        telaInicial=ft.Tabs(
+            selected_index=1,
+            length=3,
+            expand=3,
             content=Column(
                 controls=[
-                    ResponsiveRow(
-                        controls=[
-                            self.nomeEvento,self.local,self.data
-                        ],
-                        alignment=MainAxisAlignment.CENTER
-                        
+                    TabBar(
+                        tabs=[
+                            Tab(label="Usuario")
+                        ]
                     ),
-                    ResponsiveRow(
+                    TabBarView(
+                        height=300,
                         controls=[
-                            self.btnADD
-                        ],
-                        alignment=MainAxisAlignment.CENTER
+                            Container(
+                                content=Column(
+                                    controls=[
+                                        modalTabela
+                                    ],
+                                    alignment=MainAxisAlignment.CENTER
+                                )
+                            )
+                        ]
                     )
-                    
                 ]
-                
             )
-            
         )
-
-        self.controls =[
+        self.controls=[
             ResponsiveRow(
                 controls=[
-                    add
-                ]
+                    telaInicial
+                ],
+                alignment=MainAxisAlignment.CENTER
             )
         ]
         
+
+
+
+
+
+  
+     
+
+
         
-        self.update()
-
-
-    def aoMudarDestino(self,e):
-
-        if e.control.selected_index==0:
-            self.page.go("/")

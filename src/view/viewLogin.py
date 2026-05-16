@@ -21,16 +21,26 @@ class ViewLogin(View):
 
 
 
-        self.email = TextField(label="Email",color="BLACK",col=5 )
-        self.password=TextField(label="Password",can_reveal_password=True,col=5,color="BLACK")
+        self.email = TextField(label="Email",color="Blue",col=5,icon=ft.Icons.EMAIL)
+        self.password=TextField(label="Password",can_reveal_password=False,col=5,color="Blue",password=True,icon=ft.Icons.KEY)
         self.btnEntrarUsuario=Button("Entrar",col=3)
         self.route="/"
-        self.bgcolor="WHITE"
+        self.bgcolor="Black"
+        
+        
 
 
 
 
     def build(self):
+        tela_fundo=Container(
+                 content=Column(
+                      controls=[
+                           Image(src="src/view/imagens/party.jpg",border_radius=50,width=200,height=200)
+                      ]
+                 )
+            )
+
         troca_tela=ft.Tabs(selected_index=0,
                            length=3,
                            expand=True,
@@ -42,32 +52,43 @@ class ViewLogin(View):
                                        ]
                                    ),
                                    TabBarView(
-                                       height=300,
+                                       height=800,
                                        controls=[
                                            Container(
                                                content=Column(
                                                    controls=[
                                                        ResponsiveRow(controls=[
-                                                           self.email
+                                                          Image(src="src/view/imagens/party.jpg",border_radius=50,width=200,height=200)
+                                                          
 
                                                        ],
-                                                           alignment=MainAxisAlignment.CENTER
+                                                       alignment=MainAxisAlignment.START
+
+                                                           
                                                        ),
                                                        ResponsiveRow(controls=[
-                                                            self.password
+                                                            self.email
                                                        ],
                                                            alignment=MainAxisAlignment.CENTER
                                                        ),
                                                        ResponsiveRow(
                                                            controls=[
-                                                               self.btnEntrarUsuario
+                                                               self.password
                                                            ],
                                                            alignment=MainAxisAlignment.CENTER
+                                                       ),
+                                                       ResponsiveRow(controls=[
+                                                            self.btnEntrarUsuario
+                                                       ],
+                                                       alignment=MainAxisAlignment.CENTER
                                                        )
+                                                       
                                                    ],
 
-                                               )
+                                               ),
+                                               
                                            ),
+                                           
                                   
                                        ]
 
