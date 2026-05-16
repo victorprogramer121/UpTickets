@@ -20,18 +20,45 @@ class ViewInicialController:
 
         
     def listarEventos(self):
-        self.tela.tabelaEvento.rows.clear()
+        self.tela.tabelaEvento.content.controls.clear()
         for produto in self.dao.visualizarEvento():
-            linha=ft.DataRow(
-                cells=[
-                    ft.DataCell(ft.Text(produto["id"])),
-                    ft.DataCell(ft.Text(produto["nomeEvento"])),
-                    ft.DataCell(ft.Text(produto["local"])),
-                    ft.DataCell(ft.Text(produto["data"])),
-                ]
+            linha=ft.Container(
+                content=ft.Column(
+                    controls=[
+                        ft.ResponsiveRow(
+                            controls=[
+                                ft.Text(produto["id"])
+                            ],
+                            alignment=ft.MainAxisAlignment.CENTER
+                        ),
+                        ft.ResponsiveRow(
+                            controls=[
+                                ft.Image(src=produto["src/view/imagens/party.jpg"])
+                            ],
+                            alignment=ft.MainAxisAlignment.CENTER
+                        ),
+                        ft.ResponsiveRow(
+                            controls=[
+                                ft.Text(produto["nomeEvento"])
+                            ],
+                            alignment=ft.MainAxisAlignment.CENTER
+                        ),
+                        ft.ResponsiveRow(
+                            controls=[
+                                ft.Text(produto["local"])
+                            ]
+                        ),
+                        ft.ResponsiveRow(
+                            controls=[
+                                ft.Text(produto["data"])
+                            ]
+                        )
+                    ]
+                )
             )
-            self.tela.tabelaEvento.rows.append(linha)
-        self.page.update()
+            self.tela.tabelaEvento.content.controls.append(linha)
+
+           
 
     def addEvento(self,e):
         

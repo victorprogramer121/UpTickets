@@ -18,24 +18,49 @@ class ViewInicial(View):
         
         
         
-
-
-        self.tabelaEvento=DataTable(
-            columns=[
-                
-                DataColumn(label=Text("id")),
-                DataColumn(label=Text("nome Evento")),
-                DataColumn(label=Text("local")),
-                DataColumn(label=Text("data"))
-            ],
-            col=9,
-            bgcolor="ft.Colors.ON_PRIMARY_FIXED",
-            border_radius= 20
-            
-            
-        )
         
 
+
+        self.tabelaEvento=Container(
+            content=Column(
+                controls=[
+                    ResponsiveRow(
+                        controls=[
+                            Image(src="src/view/imagens/party.jpg",width=200,height=200)
+                        ]
+                    ),
+                    ResponsiveRow(
+                        controls=[
+                            Text("id")
+                        ],
+                        alignment=MainAxisAlignment.CENTER
+                    ),
+                    ResponsiveRow(
+                        controls=[
+                            Image(src="src/view/imagens/party.jpg")
+                        ],
+                        alignment=MainAxisAlignment.CENTER
+                    ),
+                    ResponsiveRow(
+                        controls=[
+                            Text("Nome Evento")
+                        ],
+                        alignment=MainAxisAlignment.CENTER
+                    ),
+                    ResponsiveRow(
+                        controls=[
+                            Text("local")
+                        ]
+                    ),
+                    ResponsiveRow(
+                        controls=[
+                            Text("data")
+                        ]
+                    )
+                ]
+                
+            )
+        )
 
     def build(self):
 
@@ -46,7 +71,7 @@ class ViewInicial(View):
             content=self.tabelaEvento,
             
             padding=Padding("20,10,10,10"),
-            expand=True,
+            expand=True
             
             
             

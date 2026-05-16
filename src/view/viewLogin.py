@@ -33,13 +33,7 @@ class ViewLogin(View):
 
 
     def build(self):
-        tela_fundo=Container(
-                 content=Column(
-                      controls=[
-                           Image(src="src/view/imagens/party.jpg",border_radius=50,width=200,height=200)
-                      ]
-                 )
-            )
+        
 
         troca_tela=ft.Tabs(selected_index=0,
                            length=3,

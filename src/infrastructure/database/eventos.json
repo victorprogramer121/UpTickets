@@ -1,20 +1,3 @@
 [
-    {
-        "id": 1,
-        "nomeEvento": "nigth",
-        "local": "Guarulhos-SP",
-        "data": "15/06/2025"
-    },
-    {
-        "id": 2,
-        "nomeEvento": "DIa",
-        "local": "SÃO PAULO-SP",
-        "data": "11/5/2026"
-    },
-    {
-        "id": 3,
-        "nomeEvento": "a",
-        "local": "a",
-        "data": "a"
-    }
+    
 ]
