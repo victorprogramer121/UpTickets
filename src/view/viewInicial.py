@@ -62,6 +62,7 @@ class ViewInicial(View):
             )
         )
 
+
     def build(self):
 
 
@@ -72,35 +73,66 @@ class ViewInicial(View):
             
             padding=Padding("20,10,10,10"),
             expand=True
+
+
+
+        
             
             
             
         )
-
-
-        telaInicial=ft.Tabs(
-            selected_index=1,
-            length=3,
-            expand=3,
+        lateral=Container(
+            width=200,
+            bgcolor=ft.Colors.BLUE_900,
             content=Column(
+                tight=True,
                 controls=[
-                    TabBar(
-                        tabs=[
-                            Tab(label="Usuario")
+                    Row(
+                        alignment=MainAxisAlignment.SPACE_BETWEEN,
+                        controls=[
+                            Text("MENU",size=20)
                         ]
                     ),
-                    TabBarView(
-                        height=300,
-                        controls=[
-                            Container(
-                                content=Column(
-                                    controls=[
-                                        modalTabela
-                                    ],
-                                    alignment=MainAxisAlignment.CENTER
-                                )
+                    Divider(height=1, color=ft.Colors.BLACK_26),
+                    NavigationRail(
+                        selected_index=1,
+                        label_type=NavigationRailLabelType.ALL,
+                        bgcolor=ft.Colors.BLUE_GREY,
+                        extended=True,
+                        height=1400,
+                        destinations=[
+                            ft.NavigationBarDestination(
+                                label="Adicionar",
+                                icon=ft.Icons.ADD,
+                                selected_icon=ft.Icons.ADD
+                                
+                            ),
+                            
+                            
+                            ft.NavigationBarDestination(
+                                label="Sair",
+                                icon=ft.Icons.EXIT_TO_APP,
+                                selected_icon=ft.Icons.EXIT_TO_APP
                             )
                         ]
+                    )
+                ]
+            )
+        )
+
+
+        telaInicial=Container(
+            width=200,
+            height=100,
+            expand=True,
+            bgcolor=ft.Colors.BLUE_900,
+            content=Column(
+                controls=[
+                    Row(
+                        controls=[
+                            Text("UpTickets",color=ft.Colors.BLACK,size=20)
+                        ],
+                        alignment=MainAxisAlignment.SPACE_BETWEEN
                     )
                 ]
             )
@@ -108,7 +140,12 @@ class ViewInicial(View):
         self.controls=[
             ResponsiveRow(
                 controls=[
-                    telaInicial
+                    telaInicial,
+                    Row(
+                        controls=[
+                            lateral
+                        ]
+                    )
                 ],
                 alignment=MainAxisAlignment.CENTER
             )
