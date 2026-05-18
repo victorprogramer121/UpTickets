@@ -42,7 +42,8 @@ class ViewLogin(View):
                                controls=[
                                    TabBar(
                                        tabs=[
-                                           Tab(label="Usuario"),
+                                           Tab(label="Usuario",),
+                                           
                                        ]
                                    ),
                                    TabBarView(

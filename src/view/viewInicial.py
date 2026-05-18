@@ -81,6 +81,9 @@ class ViewInicial(View):
             
             
         )
+
+
+
         lateral=Container(
             width=200,
             bgcolor=ft.Colors.BLUE_900,
@@ -129,21 +132,48 @@ class ViewInicial(View):
             content=Column(
                 controls=[
                     Row(
+                        
                         controls=[
-                            Text("UpTickets",color=ft.Colors.BLACK,size=20)
+
+                            
+                            Image(src="src/view/imagens/logo.png",width=150,height=100,),
+                            Text("Up Tickets",color=ft.Colors.WHITE,text_align=TextAlign.END,size=30,)
+                            
+                            
+                            
                         ],
-                        alignment=MainAxisAlignment.SPACE_BETWEEN
-                    )
+                        alignment=MainAxisAlignment.START,
+                        
+                        
+                    ),
+                    
                 ]
             )
         )
+
+        hub=Container(
+            width=2350,
+            height=1450,
+            bgcolor=ft.Colors.WHITE,
+            content=Column(
+                controls=[
+                    modalTabela
+                ]
+            )
+
+        )
+
+
+
+
+
         self.controls=[
             ResponsiveRow(
                 controls=[
                     telaInicial,
                     Row(
                         controls=[
-                            lateral
+                            lateral,hub
                         ]
                     )
                 ],
