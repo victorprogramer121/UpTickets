@@ -3,7 +3,7 @@ from src.infrastructure.services.geradorID import GeradorID
 
 
 class Evento:
-    def __init__(self,id: int, imagem,nomeEvento: str, local:  int,data: dt = None):
+    def __init__(self,id: int,nomeEvento: str, imagem: str,local:  int,data: dt = None,):
         # self.__cpf=cpf
         self.__nomeEvento = nomeEvento
         self.__local = local
@@ -31,14 +31,15 @@ class Evento:
 
     def __eq__(self, other):
         return self.__nomeEvento == other.__nomeEvento and self.__local == other.__local, print("Evento duplicado")
+    
 
     # verificar se está correto
 
     def eventoDict(self) -> dict:
         return {
             "id":self.__id,
-            "imagem":self.__imagem,
             "nomeEvento":self.__nomeEvento,
+            "imagem":self.__imagem,
             "local":self.__local,
             "data":self.__data
             
@@ -47,8 +48,8 @@ class Evento:
     def dict_to_obejct(dados):
         return Evento(
             dados["id"],
-            dados["imagem"],
             dados["nomeEvento"],
+            dados["imagem"],
             dados["local"],
             dados["data"]
         )

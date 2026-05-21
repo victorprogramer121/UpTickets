@@ -4,7 +4,7 @@ from json import JSONDecodeError
 
 class DatabaseDB:
     def __init__(self, pastaArquivo):
-        self.__arquivo=fr"src\infrastructure\database\{pastaArquivo}"
+        self.__arquivo=fr"src/infrastructure/database/{pastaArquivo}"
         self.__pastaArquivo=pastaArquivo
 
     def lerArquivo(self)->list:
