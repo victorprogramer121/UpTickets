@@ -1,23 +1,9 @@
 [
     {
         "id": 1,
-        "nomeEvento": "a",
+        "nomeEvento": "Nigth",
         "imagem": "src/view/imagens/party.jpg",
-        "local": "a",
-        "data": "a"
-    },
-    {
-        "id": 2,
-        "nomeEvento": "OI",
-        "imagem": "src/view/imagens/party.jpg",
-        "local": "OI",
-        "data": "OI"
-    },
-    {
-        "id": 3,
-        "nomeEvento": "a",
-        "imagem": "src/view/imagens/party.jpg",
-        "local": "",
-        "data": ""
+        "local": "Guarulhos-SP",
+        "data": "11/06/2026"
     }
 ]
